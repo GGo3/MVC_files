@@ -7,7 +7,10 @@ formEl.addEventListener('submit', ev => {
     const params = new FormData(formEl);
     axios.post('/upload', params)
     .then((r) => {
-        statusEl.innerHTML = `<img src="/img/${r.data}">`;
+        statusEl.innerHTML = r.data.reduce((str, el) => {
+            return `${str}<img src="/img/${el}">`;
+        }, '')
+        
     });
 });
 
